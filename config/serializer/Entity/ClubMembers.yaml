@@ -1,0 +1,10 @@
+App\Entity\PersonClub:
+  attributes:
+    id:
+      groups: [ 'person' ]
+    salary:
+      groups: [ 'person' ]
+    type:
+      groups: [ 'club' ]
+    person:
+      groups: [ 'club' ]

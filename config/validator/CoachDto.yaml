@@ -1,0 +1,19 @@
+App\Form\Model\CoachDto:
+  properties:
+    name:
+      - NotBlank: ~
+      - Length:
+          min: 3
+          max: 250
+          minMessage: 'The name must be at least {{ limit }} characters long'
+          maxMessage: 'The name cannot be longer than {{ limit }} characters'
+          allowEmptyString: false
+    surname:
+      - NotBlank: ~
+      - Length:
+          min: 3
+          max: 250
+          minMessage: 'The surname must be at least {{ limit }} characters long'
+          maxMessage: 'The surname cannot be longer than {{ limit }} characters'
+          allowEmptyString: false
+

@@ -1,0 +1,34 @@
+{#{% extends 'base.html.twig' %}#}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Comunicaciones La Liga </title>
+</head>
+
+<body>
+{# HEADER #}
+
+{# BODY #}
+<table width="600" cellpadding="0" cellspacing="0" align="justify" bgcolor="#ffffff">
+{% set type = data.type %}
+{% set name = data.member %}
+{% set club = data.club %}
+{% block content %}
+    <tr>
+        <td>
+            <p>
+                Se ha dado de baja al {% if type == 'type_player' %} jugador {% else %} entrenador {% endif %}
+                {{ data.member }} del club <b>{{ data.club }}</b> !!!
+            </p>
+            <p>
+                Desde la Liga queremos desearle lo mejor en su nueva etapa.<br/>
+                Hasta Pronto!!!
+            </p>
+        </td>
+    </tr>
+{% endblock %}
+</table>
+</body>
+</html>

@@ -1,0 +1,8 @@
+App\Entity\Person:
+  attributes:
+    id:
+      groups: [ 'person' ]
+    name:
+      groups: [ 'person' ]
+    surname:
+      groups: [ 'person' ]

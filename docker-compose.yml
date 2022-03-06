@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+  nginx:
+    container_name: laLiga-nginx
+    image: nginx:1.16.1-alpine
+    restart: on-failure
+    volumes:
+      - './public/:/app'
+      - './docker/etc/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro'
+    ports:
+      - "8080:80"
+    depends_on:
+      - php
+    networks:
+      - laLiga
+
+  # PHP-FPM: This way we can change PHP version easily
+  php:
+    container_name: laLiga-php
+    build:
+      context: .
+      dockerfile: ./docker/images/php/Dockerfile
+    restart: on-failure
+    volumes:
+       - .:/app:delegated
+    networks:
+       - laLiga
+    dns:
+       - 8.8.8.8
+       - 4.4.4.4
+       - 0.0.0.0
+
+  # Database
+  mysql:
+    container_name: laLiga-mysql
+    image: mysql:5.7
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: laLiga
+      MYSQL_DATABASE: laLiga
+      MYSQL_USER: laLiga
+      MYSQL_PASSWORD: laLiga
+    volumes:
+      - laLiga-mysql:/var/lib/mysql
+    networks:
+      - laLiga
+
+  # Mail Server
+  mailhog:
+    container_name: laLiga-mail
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    networks:
+      - laLiga
+
+networks:
+  laLiga:
+
+volumes:
+  laLiga-mysql:
+  ###> doctrine/doctrine-bundle ###
+#  db-data:
+###< doctrine/doctrine-bundle ###

@@ -1,0 +1,39 @@
+{#{% extends 'base.html.twig' %}#}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Comunicaciones La Liga </title>
+</head>
+
+<body>
+{# HEADER #}
+
+{# BODY #}
+<table width="600" cellpadding="0" cellspacing="0" align="justify" bgcolor="#ffffff">
+{% set type = data.type %}
+{% set name = data.member %}
+{% set club = data.club %}
+{% block content %}
+    <tr>
+        {% if data.type is null %}
+        <td>
+            <p>Se ha dado de alta un nuevo miembro, pero aún no se ha asignado a nigún equipo:</p>
+            <p>Bienvenido a La Liga <b>{{ data.member }}</b> !!!</p>
+        </td>
+        {% else  %}
+        <td>
+            <p>Se ha dado de alta un nuevo {% if type == 'type_player' %} jugador {% else %} entrenador {% endif %}:</p>
+            <p>Bienvenido {{ data.member }} al club <b>{{ data.club }} y a La Liga</b> !!!</p>
+        </td>
+        {% endif %}
+
+        <p>
+            Desde la Liga queremos dar la Bienvenida a este nuevo compañero!!
+        </p>
+    </tr>
+{% endblock %}
+</table>
+</body>
+</html>

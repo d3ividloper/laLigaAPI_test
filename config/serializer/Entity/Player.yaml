@@ -1,0 +1,6 @@
+App\Entity\Player:
+  attributes:
+    position:
+      groups: [ 'player' ]
+    person:
+      groups: [ 'player' ]

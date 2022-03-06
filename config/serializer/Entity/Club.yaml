@@ -1,0 +1,12 @@
+App\Entity\Club:
+  attributes:
+    id:
+      groups: [ 'club' ]
+    name:
+      groups: [ 'club' ]
+    budget:
+      groups: [ 'club' ]
+    badge:
+      groups: [ 'club' ]
+    clubMembers:
+      groups: [ 'club' ]
