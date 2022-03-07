@@ -1,0 +1,187 @@
+-- MySQL dump 10.13  Distrib 8.0.28, for Linux (x86_64)
+--
+-- Host: 127.0.0.1    Database: laLiga
+-- ------------------------------------------------------
+-- Server version	5.7.31
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `club`
+--
+
+DROP TABLE IF EXISTS `club`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `club` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `budget` decimal(10,2) NOT NULL,
+  `badge` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `club`
+--
+
+LOCK TABLES `club` WRITE;
+/*!40000 ALTER TABLE `club` DISABLE KEYS */;
+INSERT INTO `club` VALUES (2,'FC Barcelona',5000.00,'book_622425719ceb52.10116292.jpeg'),(3,'Athletic Club',99999.00,'book_62248d7a327961.10839362.png'),(4,'RCD ESpanyol',50000.00,'book_622541b6a54637.58369071.png'),(5,'Girona FC',5000.00,'book_6224f27dd532b8.26248945.png'),(6,'Real Sociedad',8000.00,'book_62250daf0f8464.94505638.png'),(7,'Real Madrid',80000.00,'book_62251d21cbc799.58922706.png'),(8,'Elche CF',1000.00,'book_62251d681d5720.22935282.png'),(9,'Cadiz CF',1000.00,'book_62251de3af2096.22073095.png'),(10,'Sevilla CF',1000.00,'book_62251e17815928.54654130.png'),(11,'Betis CF',1000.00,'book_62251e6f51b2a4.76537630.png'),(12,'Villarrael CF',1000.00,'book_62251f0c429ee1.53882830.png'),(13,'Zaragoza CF',1000.00,'book_62251f316fd5f8.81155562.png'),(14,'Getafe CF',1000.00,'book_62251fd5caa688.64910599.png'),(15,'Atletico de MAdrid',1000.00,'book_622520355d5379.12959575.png'),(16,'Valladolid',1000.00,'book_622521147ae9d3.07167558.png');
+/*!40000 ALTER TABLE `club` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `coach`
+--
+
+DROP TABLE IF EXISTS `coach`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `coach` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `person_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_3F596DCCA76ED395` (`person_id`),
+  CONSTRAINT `FK_3F596DCCA76ED395` FOREIGN KEY (`person_id`) REFERENCES `person` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `coach`
+--
+
+LOCK TABLES `coach` WRITE;
+/*!40000 ALTER TABLE `coach` DISABLE KEYS */;
+INSERT INTO `coach` VALUES (1,17),(2,18),(3,19),(4,20),(5,21),(6,27),(7,28),(8,30);
+/*!40000 ALTER TABLE `coach` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `doctrine_migration_versions`
+--
+
+DROP TABLE IF EXISTS `doctrine_migration_versions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `doctrine_migration_versions` (
+  `version` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
+  `executed_at` datetime DEFAULT NULL,
+  `execution_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `doctrine_migration_versions`
+--
+
+LOCK TABLES `doctrine_migration_versions` WRITE;
+/*!40000 ALTER TABLE `doctrine_migration_versions` DISABLE KEYS */;
+INSERT INTO `doctrine_migration_versions` VALUES ('DoctrineMigrations\\Version20220306025736','2022-03-06 03:02:49',179);
+/*!40000 ALTER TABLE `doctrine_migration_versions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `person`
+--
+
+DROP TABLE IF EXISTS `person`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `person` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `surname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `person`
+--
+
+LOCK TABLES `person` WRITE;
+/*!40000 ALTER TABLE `person` DISABLE KEYS */;
+INSERT INTO `person` VALUES (1,'Oian','Sancet'),(2,'Nico','Williams'),(3,'Pedro','León'),(4,'Jorge','Miramón'),(17,'Pepe','Mel'),(18,'Marcelino','García Toral'),(19,'Zinedine','Zidane'),(20,'Victor','Bordalás'),(21,'Andoni','Iraola'),(22,'Unai','Simón'),(23,'Luuk','De Jong'),(24,'Adama','Traoré'),(25,'Karim','Benzemá'),(26,'Dani','Vivian'),(27,'Xavi','Hernández'),(28,'Diego Pablo','Simeone'),(29,'Dani','Alves'),(30,'Benito','Floro'),(31,'León','Ferreira');
+/*!40000 ALTER TABLE `person` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `person_club`
+--
+
+DROP TABLE IF EXISTS `person_club`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `person_club` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `club_id` int(11) NOT NULL,
+  `person_id` int(11) NOT NULL,
+  `salary` double NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_3208BC59217BBB47` (`person_id`),
+  KEY `IDX_3208BC5961190A32` (`club_id`),
+  CONSTRAINT `FK_3208BC59217BBB47` FOREIGN KEY (`person_id`) REFERENCES `person` (`id`),
+  CONSTRAINT `FK_3208BC5961190A32` FOREIGN KEY (`club_id`) REFERENCES `club` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `person_club`
+--
+
+LOCK TABLES `person_club` WRITE;
+/*!40000 ALTER TABLE `person_club` DISABLE KEYS */;
+INSERT INTO `person_club` VALUES (2,3,2,900,'type_player'),(6,5,3,2000,'type_player'),(10,5,4,1500,'type_player'),(16,5,21,500,'type_coach'),(17,2,23,1500,'type_player'),(18,2,27,1000,'type_coach'),(21,5,24,20,'type_player'),(22,5,31,20,'type_player');
+/*!40000 ALTER TABLE `person_club` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `player`
+--
+
+DROP TABLE IF EXISTS `player`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `player` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `person_id` int(11) NOT NULL,
+  `position` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_98197A65217BBB47` (`person_id`),
+  CONSTRAINT `FK_98197A65217BBB47` FOREIGN KEY (`person_id`) REFERENCES `person` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `player`
+--
+
+LOCK TABLES `player` WRITE;
+/*!40000 ALTER TABLE `player` DISABLE KEYS */;
+INSERT INTO `player` VALUES (1,1,'DL'),(2,2,'DL'),(3,3,'DL'),(4,4,'DFC'),(5,22,'PT'),(6,23,'DL'),(7,24,'DL'),(8,25,'DL'),(9,26,'DF'),(10,29,'DF'),(11,31,'MD');
+/*!40000 ALTER TABLE `player` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-03-07  1:11:17
