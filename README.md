@@ -19,13 +19,36 @@ Enter inside docker container:
 ```
 docker-compose exec php sh
 ```
-Once inside container, run the following command to create our database:
+
+Once inside container, install composer depencies:
+```
+composer install
+```
+
+Create your local env file. .env.local and set database connection
+```
+DATABASE_URL="mysql://laLiga:laLiga@laLiga-mysql:3306/laLiga?serverVersion=5.7&charset=utf8mb4"
+MAILER_DSN=smtp://mailhog:1025
+```
+
+After that run the following command to create our database:
 ```
 bin/console doctrine:database:create
 ```
 
+Once database is created, run migrations:
+```
+bin/console doctrine:migrations:migrate
+``` 
+
+**Now, the api is ready to work!!**
+However you can load the dump placed at:
+*ProjectRoot/config/postman*
+
 ## POSTMAN COLLECTION ##
-You will find a Postman collection at folder ProjectRoot/config/postman with the whole actions you requests at user's guide.
+You will find a Postman collection at folder 
+*ProjectRoot/config/postman* 
+with the whole actions you requests at user's guide.
 
 **Clubes**
 - Dar de alta un club.
