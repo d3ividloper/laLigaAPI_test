@@ -21,4 +21,4 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 COPY ./docker/etc/php/ /usr/local/etc/php/
 
-RUN chmod 755 /app/public/storage/default
+RUN chmod 777 /app/public/storage/default
