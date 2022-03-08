@@ -20,7 +20,7 @@ Enter inside docker container:
 docker-compose exec php sh
 ```
 
-Once inside container, install composer depencies:
+Once inside the container, install composer dependencies:
 ```
 composer install
 ```
@@ -64,3 +64,20 @@ with the whole actions you requests at user's guide.
 
 **Entrenadores**
 - Dar de alta un entrenador sin pertenecer a un club.
+
+
+## TEST ##
+Create database for testing:
+``` 
+php bin/console doctrine:schema:update --env=test --force
+```
+
+Update test database tables:
+``` 
+php bin/console doctrine:migrations:migrate --env=test
+```
+
+Run tests:
+```
+http://localhost:8025/api/v2/messages
+```

@@ -29,23 +29,17 @@ class ClubFormProcessor {
      */
     private $clubDtoManager;
 
-    /**
-     * @var NotificationManager
-     */
-    private $notificationManager;
 
     public function __construct(
         FileUploader    $fileUploader,
         FormFactoryInterface $formFactory,
         ClubDtoManager $clubDtoManager,
-        ClubManager $clubManager,
-        NotificationManager $notificationManager
+        ClubManager $clubManager
     ) {
         $this->fileUploader = $fileUploader;
         $this->clubManager = $clubManager;
         $this->formFactory = $formFactory;
         $this->clubDtoManager = $clubDtoManager;
-        $this->notificationManager = $notificationManager;
     }
 
     public function __invoke(Request $request, ?string $clubId = null): array
@@ -60,8 +54,10 @@ class ClubFormProcessor {
         $form = $this->formFactory->create(ClubFormType::class, $clubDto);
         $form->submit($content);
         if ($form->isSubmitted() && $form->isValid()) {
-            $path = $this->fileUploader->uploadBase64File($clubDto->base64Badge, 'club_');
-            $club->setBadge($path);
+            if(!empty($clubDto->base64Badge)) {
+                $path = $this->fileUploader->uploadBase64File($clubDto->base64Badge);
+                $club->setBadge($path);
+            }
             $club->setName($clubDto->name);
             $club->setBudget($clubDto->budget);
             $club = $this->clubManager->save($club);

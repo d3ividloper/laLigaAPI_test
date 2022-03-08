@@ -2,12 +2,9 @@
 
 namespace App\Service\Common;
 
-use App\Entity\Club;
-use App\Entity\ClubUser;
 use App\Repository\ClubRepository;
-use App\Repository\ClubUserRepository;
 use App\Repository\PersonClubRepository;
-use Doctrine\Persistence\ObjectManager;
+use Doctrine\ORM\NonUniqueResultException;
 
 class SalaryCalculator
 {
@@ -26,6 +23,9 @@ class SalaryCalculator
         $this->clubRepository = $clubRepository;
     }
 
+    /**
+     * @throws NonUniqueResultException
+     */
     public function calculateFreeSalary($id)
     {
         $salary = $this->clubMemberRepository->getTotalSalary($id);
@@ -33,6 +33,9 @@ class SalaryCalculator
         return  $club->getBudget() - $salary;
     }
 
+    /**
+     * @throws NonUniqueResultException
+     */
     public function getClubTotalSalary($id)
     {
         return $this->clubMemberRepository->getTotalSalary($id);

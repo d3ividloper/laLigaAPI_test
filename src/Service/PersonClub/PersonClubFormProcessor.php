@@ -61,6 +61,8 @@ class PersonClubFormProcessor
     {
         $clubUser = $this->clubMemberManager->create();
         $content = json_decode($request->getContent(), true);
+        if (empty($content['salary']) || empty($content['id_user']))
+            return [null, "Wrong input data"];
         $dto = new ClubPlayerDto();
         $form = $this->formFactory->create(PersonClubFormType::class, $dto);
         $form->submit($content);
