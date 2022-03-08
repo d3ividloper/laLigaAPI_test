@@ -79,5 +79,5 @@ php bin/console doctrine:migrations:migrate --env=test
 
 Run tests:
 ```
-http://localhost:8025/api/v2/messages
+php bin/phpunit tests
 ```
